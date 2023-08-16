@@ -9,7 +9,18 @@ const alchemy = new Alchemy(settings);
 
 function displayTransactions(transactions, startIndex) {
   return transactions.slice(startIndex, startIndex + 10).map((transactionHash, index) => (
-    <p key={index}>Transaction {startIndex + index + 1}: {transactionHash}</p>
+    <div key={index} className='flex'>
+      <span className='mr-4 p-1'>
+        Transaction {startIndex + index + 1}: 
+      </span>
+      <a 
+        href={`https://etherscan.io/tx/${transactionHash}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className='hover:text-blue-400 w-[70%] text-right'>
+        {transactionHash}
+      </a>
+    </div>
   ))
 }
 
@@ -57,13 +68,19 @@ export const BlockDetails = () => {
         Block Details
       </h1>
       <p
-        className='font-semibold mb-8 px-6'>
+        className='font-semibold mb-2 px-6'>
         Block Number: {blockNumber}
+      </p>
+
+      <p
+        className='font-semibold mb-8 px-6'>
+        Number of Transactions: {block?.transactions?.length || 0}
       </p>
       <div
         className='px-6'>
         {displayTransactions(block?.transactions || [], startIndex)}
       </div>
+
       <div className='flex flex-row w-[50%] items-center pt-12 mx-auto my-0'>
         <div className='flex flex-col w-[45%] items-center'>
           <label className='mb-2'>
