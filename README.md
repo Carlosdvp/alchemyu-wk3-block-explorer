@@ -1,5 +1,18 @@
 # Ethereum Block Explorer
 
+## Customizations
+
+- create new component: BlockDetails
+    - moved the logic to get block details here
+- added Tailwindcss to the project
+
+
+
+
+---------------------------------------------------------------------------
+
+# Original Instructions
+
 The lessons this week covered the Ethereum JSON-RPC API and the `ethers.js` library giving us the ability to query the Ethereum blockchain and make transactions!
 
 Let's put that knowledge to the test by building our very own **Ethereum Block Explorer**!

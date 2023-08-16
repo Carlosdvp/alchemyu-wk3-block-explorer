@@ -8,9 +8,16 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 
+function displayTransactions(transactions, startIndex) {
+  return transactions.slice(startIndex, startIndex + 10).map((transactionHash, index) => (
+    <p key={index}>Transaction {startIndex + index + 1}: {transactionHash}</p>
+  ))
+}
+
 export const BlockDetails = () => {
   const [blockNumber, setBlockNumber] = useState();
   const [block, setBlock] = useState();
+  const [startIndex, setStartIndex] = useState(0); // New state to track index
 
   useEffect(() => {
     async function fetchData() {
@@ -28,13 +35,31 @@ export const BlockDetails = () => {
     fetchData()
   }, []);
 
-  console.log(block)
+  const handleNextButtonClick = () => {
+    setStartIndex(prevIndex => prevIndex + 10);
+  };
 
   return (
-    <>
-      <h1 className='text-red-900 font-semibold text-3xl text-center py-12'>BlockDetails</h1>
-      <p>Block Number: {blockNumber}</p>
-      <p>Block hash: {block?.hash}</p>
-    </>
+    <div className='bg-slate-300 h-full'>
+      <h1 className='text-red-900 font-semibold text-3xl text-center py-12'>
+        Block Details
+      </h1>
+      <p
+        className='font-semibold mb-8 px-6'>
+        Block Number: {blockNumber}
+      </p>
+      <div
+        className='px-6'>
+        {displayTransactions(block?.transactions || [], startIndex)}
+      </div>
+      <div className='flex flex-col w-[30%] items-center pt-12 mx-auto my-0'>
+        <label className='mb-2'>Show next 10 Transactions</label>
+        <button
+          className='bg-slate-600 text-white hover:bg-slate-200 hover:text-slate-700 py-2 px-4 border border-red-950 rounded-md w-[50%]'
+          onClick={handleNextButtonClick}>
+          Next 10
+        </button>
+      </div>
+    </div>
   )
 }
