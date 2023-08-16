@@ -75,10 +75,10 @@ export const BlockDetails = () => {
 
       <p
         className='font-semibold mb-8 px-6'>
-        Number of Transactions: {block?.transactions?.length || 0}
+        Number of Transactions in this block: {block?.transactions?.length || 0}
       </p>
       <div
-        className='px-6'>
+        className='p-6'>
         {displayTransactions(block?.transactions || [], startIndex)}
       </div>
 

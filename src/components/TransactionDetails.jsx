@@ -13,6 +13,7 @@ export const TransactionDetails = () => {
   const getTxDetails = async () => {
     try {
       const txData = await alchemy.core.getTransactionReceipt(txHash);
+
       setTxDetails(txData);
     } catch (error) {
       console.error('Error fetching Tx details', error)
@@ -43,13 +44,35 @@ export const TransactionDetails = () => {
       </div>
 
       {txDetails && (
-        <div className='px-4 py-6'>
-          <p>From: {txDetails.from}</p>
-          <p>To: {txDetails.to}</p>
-          <p>Contract Address: {txDetails.contractAddress}</p>
-          <p>Block Number: {txDetails.blockNumber}</p>
-          <p>Tx Index: {txDetails.transactionIndex}</p>
-
+        <div className='px-4 py-6 grid grid-cols-2 w-[40%]'>
+          <p className='font-semibold pb-1'>From: </p>
+          <a 
+            href={`https://etherscan.io/address/${txDetails.from}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className='hover:text-blue-400 w-[70%] text-right'>
+            {txDetails.from}
+          </a>
+          <p className='font-semibold pb-1'>To: </p>
+          <a 
+            href={`https://etherscan.io/address/${txDetails.to}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className='hover:text-blue-400 w-[70%] text-right'>
+            {txDetails.to}
+          </a>
+          <p className='font-semibold pb-1'>Contract Address: </p>
+          <span className=''>
+            {txDetails.contractAddress}
+          </span>
+          <p className='font-semibold pb-1'>Block Number: </p>
+          <span className=''>
+            {txDetails.blockNumber}
+          </span>
+          <p className='font-semibold pb-1'>Tx Index: </p>
+          <span className=''>
+            {txDetails.transactionIndex}
+          </span>
         </div>
       )}
     </div>
