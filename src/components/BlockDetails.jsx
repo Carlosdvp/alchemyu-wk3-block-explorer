@@ -1,5 +1,6 @@
 import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
+import { TransactionDetails } from './TransactionDetails';
 
 const settings = {
   apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
@@ -81,8 +82,8 @@ export const BlockDetails = () => {
         {displayTransactions(block?.transactions || [], startIndex)}
       </div>
 
-      <div className='flex flex-row w-[50%] items-center pt-12 mx-auto my-0'>
-        <div className='flex flex-col w-[45%] items-center'>
+      <div className='flex flex-row w-[50%] items-center py-6 mx-auto my-0 border-2 border-slate-600'>
+        <div className='flex flex-col w-[50%] items-center'>
           <label className='mb-2'>
             Show next 10 Transactions
           </label>
@@ -103,6 +104,8 @@ export const BlockDetails = () => {
           </button>
         </div>
       </div>
+
+      <TransactionDetails />
     </div>
   )
 }
