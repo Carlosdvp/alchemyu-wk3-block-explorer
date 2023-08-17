@@ -2,10 +2,18 @@
 
 ## Customizations
 
-- create new component: BlockDetails
+- created two new components: BlockDetails and TransactionDetails
     - moved the logic to get block details here
 - added Tailwindcss to the project
 
+### Added 4 features
+
+1. A button that displays the next 10 transactions in the current block
+2. A second button that resets the transactions display back to the first 10
+3. Each transaction hash is a link that goes to etherscan
+4. A section to get some transaction details
+    - an input field for a transaction hash
+    - a button to get the transaction details for that hash
 
 
 
