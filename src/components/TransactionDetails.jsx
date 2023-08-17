@@ -1,4 +1,5 @@
 import { Alchemy } from 'alchemy-sdk';
+import { ethers } from 'ethers';
 import { useState } from 'react';
 
 const settings = {

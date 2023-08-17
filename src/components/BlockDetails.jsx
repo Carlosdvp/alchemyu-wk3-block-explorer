@@ -72,11 +72,15 @@ export const BlockDetails = () => {
         className='font-semibold mb-2 px-6'>
         Block Number: {blockNumber}
       </p>
-
+      <p
+        className='font-semibold mb-2 px-6'>
+        Block Hash: {block?.hash}
+      </p>
       <p
         className='font-semibold mb-8 px-6'>
         Number of Transactions in this block: {block?.transactions?.length || 0}
       </p>
+
       <div
         className='p-6'>
         {displayTransactions(block?.transactions || [], startIndex)}
